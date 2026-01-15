@@ -1,2 +1,2 @@
 # MIT Game Design Course Project
-capstone project for MIT game design course
+prototype for capstone project for MIT game design course
