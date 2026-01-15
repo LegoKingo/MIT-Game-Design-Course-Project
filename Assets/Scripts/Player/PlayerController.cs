@@ -86,9 +86,20 @@ public class PlayerController : MonoBehaviour, PlayerControls.IPlayerActions
 
     public void OnFire(InputAction.CallbackContext context) 
     {
-        Instantiate(projPrefab, transform.position, transform.rotation);
-        AmmoCounter.AmmoCount();
+        if (AmmoCounter.counter > 0)
+        {
+            Instantiate(projPrefab, transform.position, transform.rotation);
+            AmmoCounter.AmmoCount();
+        }
+        else
+        {
+            AmmoCounter.OutOfAmmo();
+        }
         
+    }
+    public void OnReload(InputAction.CallbackContext context)
+    {
+        AmmoCounter.InitializeAmmo();
     }
 
     public void OnDeviceChange(PlayerInput pi)
