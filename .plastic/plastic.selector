@@ -1,0 +1,4 @@
+repository "Twin Stick Shooter/Twin Stick Shooter@2475866730496@cloud"
+  path "/"
+    br "/main"
+    co "/main"
