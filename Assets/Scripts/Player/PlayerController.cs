@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -19,12 +20,14 @@ public class PlayerController : MonoBehaviour, PlayerControls.IPlayerActions
     private PlayerController controller;
     private PlayerInput playerInput;
     public AmmoCounter AmmoCounter;
+    private CinemachineImpulseSource ImpulseSource;
 
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
         playerControls = new PlayerControls();
         playerInput = GetComponent<PlayerInput>();
+        ImpulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private void OnEnable()
@@ -94,6 +97,7 @@ public class PlayerController : MonoBehaviour, PlayerControls.IPlayerActions
         else
         {
             AmmoCounter.OutOfAmmo();
+            TriggerImpulse();
         }
         
     }
@@ -107,5 +111,8 @@ public class PlayerController : MonoBehaviour, PlayerControls.IPlayerActions
         gamepadConnection = pi.currentControlScheme.Equals("Gamepad") ? true : false;
 
     }
- 
+    public void TriggerImpulse()
+    {
+        ImpulseSource.GenerateImpulse();
+    }
 }
